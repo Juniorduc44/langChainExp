@@ -93,4 +93,4 @@ target/
 # Models
 .bin
 
-.venv
+*venv*

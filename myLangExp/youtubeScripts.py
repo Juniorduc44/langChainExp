@@ -1,3 +1,4 @@
+# v0.0.1
 from langchain.document_loaders import YoutubeLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings.openai import OpenAIEmbeddings
@@ -67,10 +68,23 @@ def get_response_from_query(db, query, k=4):
     return response, docs
 
 
-# Example usage:
-video_url = input("Enter Youtube URL: ")
-db = create_db_from_youtube_video_url(video_url)
+# Questions and Data input
+try:
+    video_url = input("Enter Youtube URL: ")
+    print("**VIDEO ACCEPTED**")
+except:
+    print("**VIDEO REJECTED**")
+try:
+    query = input("Ask a question about the video: ")
+    print("**QUESTION ACCEPTED**")
+except:
+    print("**DATABASE NOT CREATED**")
+try:
+    db = create_db_from_youtube_video_url(video_url)
+    print("**DATABASE CREATED**")
+except:
+    print("**QUESTION REJECTED**")
 
-query = "What are they saying about Microsoft?"
+
 response, docs = get_response_from_query(db, query)
 print(textwrap.fill(response, width=50))
